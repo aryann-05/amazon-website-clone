@@ -16,7 +16,7 @@
     width: 100px;
 }
 .logo{
-    background-image: url("logo.png");
+    background-image: url("images/logo.png");
     height: 50px;
     background-size: cover;
     width: 100%;
@@ -202,7 +202,7 @@ ul a{
     align-items: center;
 }
 .logo{
-    background-image: url("logo.png");
+    background-image: url("images/logo.png");
     height: 50px;
     background-size: cover;
     width: 100px;
