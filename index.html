@@ -77,44 +77,60 @@
             <div class="box-content">
                 <h2>Gaming accessories</h2>
             <div class="box-image" style="background-image: url('images/gaming accessory.jpg');"></div>
+            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
+            <button class="add-to-cart">Add to Cart</button>
             <a href="gaming.html">see more</a>
             </div>
         </div>
         <div class="box2 box" data-category="Fashion"><div class="box-content">
             <h2>shopping deals in fashion</h2>
         <div class="box-image" style="background-image: url('images/shopping fashion.jpg');"></div>
+            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
+            <button class="add-to-cart">Add to Cart</button>
         <a href="fashion.html">see more</a>
         </div></div>
         <div class="box3 box" data-category="Electronics"><div class="box-content">
             <h2>amazon gadget store</h2>
         <div class="box-image" style="background-image: url('images/gadget.jpg');"></div>
+            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
+            <button class="add-to-cart">Add to Cart</button>
         <a href="gadgets.html">see more</a>
         </div></div>
         <div class="box4 box" data-category="Beauty"><div class="box-content">
             <h2>Deals in cosmetic</h2>
         <div class="box-image" style="background-image: url('images/cosmetic.jpg');"></div>
+            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
+            <button class="add-to-cart">Add to Cart</button>
         <a href="pcs.html">see more</a>
         </div></div>
         <div class="box1 box" data-category="Fashion">
             <div class="box-content">
                 <h2>Trendy Foot-wear</h2>
             <div class="box-image" style="background-image: url('images/footwear.jpg');"></div>
+            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
+            <button class="add-to-cart">Add to Cart</button>
             <a href="space.html">see more</a>
             </div>
         </div>
         <div class="box2 box" data-category="Gifts"><div class="box-content">
             <h2>deals on gifts for dad</h2>
         <div class="box-image" style="background-image: url('images/fatherday.jpg');"></div>
+            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
+            <button class="add-to-cart">Add to Cart</button>
         <a href="gifts.html">see more</a>
         </div></div>
         <div class="box3 box" data-category="Beauty"><div class="box-content">
             <h2>beauty steal under$25</h2>
         <div class="box-image" style="background-image: url('images/beauty.jpg');"></div>
+        <button class="add-to-wishlist">Add to Wishlist</button>
+        <button class="add-to-cart">Add to Cart</button>
         <a href="beauty.html">see more</a>
         </div></div>
         <div class="box4 box" data-category="Trends"><div class="box-content">
             <h2>fashion trends you like</h2>
         <div class="box-image" style="background-image: url('images/trend.jpg');"></div>
+        <button class="add-to-wishlist">Add to Wishlist</button>
+        <button class="add-to-cart">Add to Cart</button>
         <a href="trends.html">see more</a>
         </div></div>
     </div>
@@ -174,19 +190,84 @@
             </div>
         </div>
     </footer>
+    <div class="popup" id="popup">Item added to wishlist!</div>
     <script>
+        const categoryMap = {
+            'Electronics': 'gadgets.html',
+            'Fashion': 'fashion.html',
+            'Beauty': 'beauty.html',
+            'Gaming': 'gaming.html',
+            'Gifts': 'gifts.html',
+            'PC Accessories': 'pcs.html',
+            'Space': 'space.html',
+            'Trends': 'trends.html'
+        };
+
+        document.querySelector('.search-select').addEventListener('change', function() {
+            const category = this.value;
+            if (category === 'All') {
+                const boxes = document.querySelectorAll('.box');
+                boxes.forEach(box => box.style.display = 'block');
+            } else {
+                const boxes = document.querySelectorAll('.box');
+                boxes.forEach(box => {
+                    if (box.getAttribute('data-category') === category) {
+                        box.style.display = 'block';
+                    } else {
+                        box.style.display = 'none';
+                    }
+                });
+            }
+        });
+
         document.getElementById('search-icon').addEventListener('click', function() {
-            const searchTerm = document.getElementById('search-input').value;
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
             const category = document.querySelector('.search-select').value;
             const boxes = document.querySelectorAll('.box');
             boxes.forEach(box => {
-                if (category === 'All Categories' || box.getAttribute('data-category') === category) {
+                const title = box.querySelector('h2').textContent.toLowerCase();
+                const matchesCategory = category === 'All' || box.getAttribute('data-category') === category;
+                const matchesSearch = title.includes(searchTerm);
+                if (matchesCategory && matchesSearch) {
                     box.style.display = 'block';
                 } else {
                     box.style.display = 'none';
                 }
             });
-            alert(`Searching for "${searchTerm}" in category "${category}"`);
+        });
+
+        document.querySelectorAll('.add-to-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                const isFilled = this.classList.toggle('filled');
+                const popup = document.getElementById('popup');
+                if (isFilled) {
+                    popup.textContent = 'Item added to wishlist!';
+                } else {
+                    popup.textContent = 'Item removed from wishlist!';
+                }
+                popup.style.display = 'block';
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 2000);
+            });
+        });
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const isAdded = this.classList.toggle('added');
+                const popup = document.getElementById('popup');
+                if (isAdded) {
+                    this.textContent = 'Added';
+                    popup.textContent = 'Item added to cart!';
+                } else {
+                    this.textContent = 'Add to Cart';
+                    popup.textContent = 'Item removed from cart!';
+                }
+                popup.style.display = 'block';
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 2000);
+            });
         });
     </script>
 </body>
