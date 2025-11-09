@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+d<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,20 +23,21 @@
         .wishlist-btn.active {
             color: red;
         }
+
         .add-to-cart-btn {
             position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #007bff;
+            right: -130px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ff9900;
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 20px;
             cursor: pointer;
             border-radius: 4px;
         }
         .add-to-cart-btn.added {
-            background-color: #28a745;
+            background-color: #007bff;
         }
         .see-more {
             position: absolute;
@@ -135,48 +136,44 @@
             <div class="box-content">
                 <h2>sunscreen</h2>
                 <div class="box-image" style="background-image: url('images/sunscreen.jpg');"></div>
-                <p>9.99</p>
-                <button class="wishlist-btn" onclick="toggleWishlist(this, 'sunscreen', 'images/sunscreen.jpg', 9.99)">
+                <p>500</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'sunscreen', 'images/sunscreen.jpg', 500)">
                     <i class="fa-regular fa-heart"></i>
                 </button>
-                <button class="add-to-cart-btn" onclick="addToCart(this, 'sunscreen', 'images/sunscreen.jpg', 9.99)">Add to Cart</button>
-                <a href="beauty.html" class="see-more">see more</a>
+                <button class="add-to-cart-btn" onclick="addToCart(this, 'sunscreen', 'images/sunscreen.jpg', 500)">Add to Cart</button>
             </div>
         </div>
         <div class="box2 box" data-category="Beauty">
             <div class="box-content">
                 <h2>face mask</h2>
                 <div class="box-image" style="background-image: url('images/facemask.jpg');"></div>
-                <p>19.99</p>
-                <button class="wishlist-btn" onclick="toggleWishlist(this, 'face mask', 'images/facemask.jpg', 19.99)">
+                <p>200</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'face mask', 'images/facemask.jpg', 200)">
                     <i class="fa-regular fa-heart"></i>
                 </button>
-                <button class="add-to-cart-btn" onclick="addToCart(this, 'face mask', 'images/facemask.jpg', 19.99)">Add to Cart</button>
-                <a href="beauty.html" class="see-more">see more</a>
+                <button class="add-to-cart-btn" onclick="addToCart(this, 'face mask', 'images/facemask.jpg', 200)">Add to Cart</button>
             </div>
         </div>
         <div class="box3 box" data-category="Beauty">
             <div class="box-content">
                 <h2>Mascara</h2>
                 <div class="box-image" style="background-image: url('images/mascara.jpg');"></div>
-                <p>14.99</p>
-                <button class="wishlist-btn" onclick="toggleWishlist(this, 'Mascara', 'images/mascara.jpg', 14.99)">
+                <p>300</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'Mascara', 'images/mascara.jpg', 300)">
                     <i class="fa-regular fa-heart"></i>
                 </button>
-                <button class="add-to-cart-btn" onclick="addToCart(this, 'Mascara', 'images/mascara.jpg', 14.99)">Add to Cart</button>
-                <a href="beauty.html" class="see-more">see more</a>
+                <button class="add-to-cart-btn" onclick="addToCart(this, 'Mascara', 'images/mascara.jpg', 300)">Add to Cart</button>
             </div>
         </div>
         <div class="box4 box" data-category="Beauty">
             <div class="box-content">
                 <h2>Perfume</h2>
                 <div class="box-image" style="background-image: url('images/perfume.jpg');"></div>
-                <p>29.99</p>
-                <button class="wishlist-btn" onclick="toggleWishlist(this, 'Perfume', 'images/perfume.jpg', 29.99)">
+                <p>800</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(this, 'Perfume', 'images/perfume.jpg', 800)">
                     <i class="fa-regular fa-heart"></i>
                 </button>
-                <button class="add-to-cart-btn" onclick="addToCart(this, 'Perfume', 'images/perfume.jpg', 29.99)">Add to Cart</button>
-                <a href="beauty.html" class="see-more">see more</a>
+                <button class="add-to-cart-btn" onclick="addToCart(this, 'Perfume', 'images/perfume.jpg', 800)">Add to Cart</button>
             </div>
         </div>
     </div>

@@ -7,6 +7,54 @@
     <title>amazon</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="stylesheet3.css">
+    <style>
+        .box {
+            position: relative;
+        }
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #ccc;
+            cursor: pointer;
+        }
+        .wishlist-btn.active {
+            color: red;
+        }
+        .see-more {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #007185;
+            text-decoration: none;
+        }
+        .popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            display: none;
+            z-index: 1000;
+        }
+        .box-content h2 {
+            font-size: 1.2em;
+        }
+        .box-content p {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .box-content p::before {
+            content: "₹";
+        }
+
+    </style>
 </head>
 <body>
     <header>
@@ -77,61 +125,69 @@
             <div class="box-content">
                 <h2>Gaming accessories</h2>
             <div class="box-image" style="background-image: url('images/gaming accessory.jpg');"></div>
-            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
-            <button class="add-to-cart">Add to Cart</button>
-            <a href="gaming.html">see more</a>
+            <button class="wishlist-btn" onclick="toggleWishlist(this, 'Gaming accessories', 'images/gaming accessory.jpg', 1500)">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="gaming.html" class="see-more">see more</a>
             </div>
         </div>
         <div class="box2 box" data-category="Fashion"><div class="box-content">
             <h2>shopping deals in fashion</h2>
         <div class="box-image" style="background-image: url('images/shopping fashion.jpg');"></div>
-            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
-            <button class="add-to-cart">Add to Cart</button>
-        <a href="fashion.html">see more</a>
+            <button class="wishlist-btn" onclick="toggleWishlist(this, 'shopping deals in fashion', 'images/shopping fashion.jpg', 1800)">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        <a href="fashion.html" class="see-more">see more</a>
         </div></div>
         <div class="box3 box" data-category="Electronics"><div class="box-content">
             <h2>amazon gadget store</h2>
         <div class="box-image" style="background-image: url('images/gadget.jpg');"></div>
-            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
-            <button class="add-to-cart">Add to Cart</button>
-        <a href="gadgets.html">see more</a>
+            <button class="wishlist-btn" onclick="toggleWishlist(this, 'amazon gadget store', 'images/gadget.jpg', 5000)">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        <a href="gadgets.html" class="see-more">see more</a>
         </div></div>
         <div class="box4 box" data-category="Beauty"><div class="box-content">
             <h2>Deals in cosmetic</h2>
         <div class="box-image" style="background-image: url('images/cosmetic.jpg');"></div>
-            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
-            <button class="add-to-cart">Add to Cart</button>
-        <a href="pcs.html">see more</a>
+            <button class="wishlist-btn" onclick="toggleWishlist(this, 'Deals in cosmetic', 'images/cosmetic.jpg', 500)">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        <a href="pcs.html" class="see-more">see more</a>
         </div></div>
         <div class="box1 box" data-category="Fashion">
             <div class="box-content">
                 <h2>Trendy Foot-wear</h2>
             <div class="box-image" style="background-image: url('images/footwear.jpg');"></div>
-            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
-            <button class="add-to-cart">Add to Cart</button>
-            <a href="space.html">see more</a>
+            <button class="wishlist-btn" onclick="toggleWishlist(this, 'Trendy Foot-wear', 'images/footwear.jpg', 1200)">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="space.html" class="see-more">see more</a>
             </div>
         </div>
         <div class="box2 box" data-category="Gifts"><div class="box-content">
             <h2>deals on gifts for dad</h2>
         <div class="box-image" style="background-image: url('images/fatherday.jpg');"></div>
-            <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
-            <button class="add-to-cart">Add to Cart</button>
-        <a href="gifts.html">see more</a>
+            <button class="wishlist-btn" onclick="toggleWishlist(this, 'deals on gifts for dad', 'images/fatherday.jpg', 200)">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        <a href="gifts.html" class="see-more">see more</a>
         </div></div>
         <div class="box3 box" data-category="Beauty"><div class="box-content">
             <h2>beauty steal under$25</h2>
         <div class="box-image" style="background-image: url('images/beauty.jpg');"></div>
-        <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
-        <button class="add-to-cart">Add to Cart</button>
-        <a href="beauty.html">see more</a>
+        <button class="wishlist-btn" onclick="toggleWishlist(this, 'beauty steal under$25', 'images/beauty.jpg', 300)">
+            <i class="fa-regular fa-heart"></i>
+        </button>
+        <a href="beauty.html" class="see-more">see more</a>
         </div></div>
         <div class="box4 box" data-category="Trends"><div class="box-content">
             <h2>fashion trends you like</h2>
         <div class="box-image" style="background-image: url('images/trend.jpg');"></div>
-        <button class="add-to-wishlist"><i class="fas fa-heart"></i></button>
-        <button class="add-to-cart">Add to Cart</button>
-        <a href="trends.html">see more</a>
+        <button class="wishlist-btn" onclick="toggleWishlist(this, 'fashion trends you like', 'images/trend.jpg', 2500)">
+            <i class="fa-regular fa-heart"></i>
+        </button>
+        <a href="trends.html" class="see-more">see more</a>
         </div></div>
     </div>
     <footer>
@@ -192,6 +248,48 @@
     </footer>
     <div class="popup" id="popup">Item added to wishlist!</div>
     <script>
+        function addToCart(button, title, image, price) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItem = cart.find(item => item.title === title);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ title, image, price, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            button.textContent = 'Added';
+            button.classList.add('added');
+            showPopup('Item added to cart!');
+            setTimeout(() => {
+                button.textContent = 'Add to Cart';
+                button.classList.remove('added');
+            }, 2000);
+        }
+
+        function toggleWishlist(button, title, image, price) {
+            const icon = button.querySelector('i');
+            if (icon.classList.contains('fa-regular')) {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid');
+                button.classList.add('active');
+                showPopup('Item added to wishlist!');
+            } else {
+                icon.classList.remove('fa-solid');
+                icon.classList.add('fa-regular');
+                button.classList.remove('active');
+                showPopup('Item removed from wishlist!');
+            }
+        }
+
+        function showPopup(message) {
+            const popup = document.getElementById('popup');
+            popup.textContent = message;
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+
         const categoryMap = {
             'Electronics': 'gadgets.html',
             'Fashion': 'fashion.html',
@@ -233,63 +331,6 @@
                 } else {
                     box.style.display = 'none';
                 }
-            });
-        });
-
-        document.querySelectorAll('.add-to-wishlist').forEach(button => {
-            button.addEventListener('click', function() {
-                const isFilled = this.classList.toggle('filled');
-                const popup = document.getElementById('popup');
-                if (isFilled) {
-                    popup.textContent = 'Item added to wishlist!';
-                } else {
-                    popup.textContent = 'Item removed from wishlist!';
-                }
-                popup.style.display = 'block';
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                }, 2000);
-            });
-        });
-
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
-                const isAdded = this.classList.toggle('added');
-                const popup = document.getElementById('popup');
-                const box = this.closest('.box');
-                const title = box.querySelector('h2').textContent;
-                const image = box.querySelector('.box-image').style.backgroundImage.slice(5, -2); // Extract URL from background-image
-                const price = 29.99; // Placeholder price, you can adjust this
-
-                if (isAdded) {
-                    this.textContent = 'Added';
-                    popup.textContent = 'Item added to cart!';
-
-                    // Add to cart in localStorage
-                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                    const existingItem = cart.find(item => item.title === title);
-                    if (existingItem) {
-                        existingItem.quantity += 1;
-                    } else {
-                        cart.push({ title, image, price, quantity: 1 });
-                    }
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                } else {
-                    this.textContent = 'Add to Cart';
-                    popup.textContent = 'Item removed from cart!';
-
-                    // Remove from cart in localStorage
-                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                    const itemIndex = cart.findIndex(item => item.title === title);
-                    if (itemIndex > -1) {
-                        cart.splice(itemIndex, 1);
-                    }
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                }
-                popup.style.display = 'block';
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                }, 2000);
             });
         });
     </script>
