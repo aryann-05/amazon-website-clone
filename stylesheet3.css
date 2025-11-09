@@ -161,6 +161,9 @@ span{
     margin-left: 1rem;
     margin-right: 1rem;
 }
+.box-content h2{
+    font-size: 1em;
+}
 .box-content p{
     color: #007185;
 }
@@ -185,9 +188,11 @@ span{
     color: red;
 }
 .add-to-cart {
-    position: absolute;
+    position: bottom-left;
+    margin-left: 60px;
     bottom: 10px;
-    left: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: blue;
 }
 .add-to-cart.added {
