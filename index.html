@@ -45,10 +45,10 @@
                 <p><span>Return</span></p>
                 <p>& Orders</p>
             </div>
-            <div class="nav-cart border">
+            <a href="cart.html" class="nav-cart border">
                 <i class="fa-solid fa-cart-shopping"></i>
                 Cart
-            </div>
+            </a>
         </div>
         <div class="panel">
             <div class="panel-all">
@@ -256,12 +256,35 @@
             button.addEventListener('click', function() {
                 const isAdded = this.classList.toggle('added');
                 const popup = document.getElementById('popup');
+                const box = this.closest('.box');
+                const title = box.querySelector('h2').textContent;
+                const image = box.querySelector('.box-image').style.backgroundImage.slice(5, -2); // Extract URL from background-image
+                const price = 29.99; // Placeholder price, you can adjust this
+
                 if (isAdded) {
                     this.textContent = 'Added';
                     popup.textContent = 'Item added to cart!';
+
+                    // Add to cart in localStorage
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const existingItem = cart.find(item => item.title === title);
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ title, image, price, quantity: 1 });
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart));
                 } else {
                     this.textContent = 'Add to Cart';
                     popup.textContent = 'Item removed from cart!';
+
+                    // Remove from cart in localStorage
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const itemIndex = cart.findIndex(item => item.title === title);
+                    if (itemIndex > -1) {
+                        cart.splice(itemIndex, 1);
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart));
                 }
                 popup.style.display = 'block';
                 setTimeout(() => {

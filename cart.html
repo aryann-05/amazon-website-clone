@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Amazon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="stylesheet3.css">
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+        }
+        .cart-item {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+            align-items: center;
+        }
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        .cart-item-details h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+        .cart-item-details p {
+            margin: 5px 0;
+            color: #007185;
+        }
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .cart-item-quantity button {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .cart-item-quantity input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ccc;
+            margin: 0 10px;
+        }
+        .cart-item-price {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 20px;
+        }
+        .cart-item-price::before {
+            content: "₹";
+        }
+        .cart-item-remove {
+            color: #007185;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .cart-summary {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .cart-summary h2 {
+            margin-top: 0;
+        }
+        .cart-summary p {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .checkout-button {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 50px;
+        }
+        .empty-cart h2 {
+            color: #666;
+        }
+        .empty-cart a {
+            color: #007185;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-logo border">
+                <div class="logo"></div>
+            </div>
+            <div class="nav-adress border">
+                <p class="add-first">Deliver to</p>
+                <div class="add-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="add-second">India</p>
+                </div>
+            </div>
+            <div class="nav-search">
+                <select class="search-select">
+                    <option>All</option>
+                    <option>Electronics</option>
+                    <option>Fashion</option>
+                    <option>Beauty</option>
+                    <option>Gaming</option>
+                    <option>Gifts</option>
+                    <option>PC Accessories</option>
+                    <option>Space</option>
+                    <option>Trends</option>
+                </select>
+                <input placeholder="search amazon" class="search-input" id="search-input">
+                <div class="search-icon" id="search-icon"></div>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="nav-signin border">
+                <p><span>hello , sign in</span></p>
+                <p class="nav-second">Account & lists</p>
+            </div>
+            <div class="nav-return border">
+                <p><span>Return</span></p>
+                <p>& Orders</p>
+            </div>
+            <a href="cart.html" class="nav-cart border">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cart
+            </a>
+        </div>
+        <div class="panel">
+            <div class="panel-all">
+                <i class="fa-solid fa-bars"></i>
+                All
+            </div>
+            <div class="panel-opps">
+                <p>Today's deal</p>
+                <p>Customer Services</p>
+                <p>Registry</p>
+                <p>Gifts card</p>
+                <p>sell</p>
+            </div>
+            <div class="panel-deals">
+                Shop deals in electronics
+            </div>
+        </div>
+    </header>
+
+    <div class="cart-container">
+        <h1>Shopping Cart</h1>
+        <div id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-summary">
+            <h2>Cart Summary</h2>
+            <p><span>Subtotal (<span id="item-count">0</span> items):</span> <span id="subtotal">₹0.00</span></p>
+            <p><span>Shipping:</span> <span id="shipping">₹0.00</span></p>
+            <p><span>Tax:</span> <span id="tax">₹0.00</span></p>
+            <p style="font-weight: bold; font-size: 1.2em;"><span>Total:</span> <span id="total">₹0.00</span></p>
+            <button class="checkout-button">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="foot-panel1">
+            Back to Top
+        </div>
+        <div class="foot-panel2">
+            <ul>
+           <p> Get to Know Us</p>
+           <a>Careers</a>
+           <a>Blog</a>
+           <a>About Amazon</a>
+           <a>Investor Relations</a>
+           <a>Amazon Devices</a>
+           <a>Amazon Science</a>
+           </ul>
+           <ul>
+            <p> Make money with us</p>
+            <a>Careers</a>
+            <a>Blog</a>
+            <a>About Amazon</a>
+            <a>Investor Relations</a>
+            <a>Amazon Devices</a>
+            <a>Amazon Science</a>
+            </ul>
+            <ul>
+                <p> Amazon payment products</p>
+                <a>Careers</a>
+                <a>Blog</a>
+                <a>About Amazon</a>
+                <a>Investor Relations</a>
+                <a>Amazon Devices</a>
+                <a>Amazon Science</a>
+                </ul>
+                <ul>
+                    <p> Let us help you</p>
+                    <a>Careers</a>
+                    <a>Blog</a>
+                    <a>About Amazon</a>
+                    <a>Investor Relations</a>
+                    <a>Amazon Devices</a>
+                    <a>Amazon Science</a>
+                    </ul>
+        </div>
+        <div class="foot-panel3">
+            <div class="logo"></div>
+        </div>
+        <div class="foot-panel4">
+            <div class="pages">
+                <a>conditions of use</a>
+                <a>privacy notice</a>
+                <a>your ads privacy choices</a>
+            </div>
+            <div class="copyright">
+                © 1996-2024, Amazon.com, Inc. or its affiliates
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Load cart items from localStorage
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const itemCount = document.getElementById('item-count');
+            const subtotal = document.getElementById('subtotal');
+            const shipping = document.getElementById('shipping');
+            const tax = document.getElementById('tax');
+            const total = document.getElementById('total');
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <h2>Your Amazon Cart is empty</h2>
+                        <p><a href="index.html">Shop today's deals</a></p>
+                    </div>
+                `;
+                itemCount.textContent = '0';
+                subtotal.textContent = '₹0.00';
+                shipping.textContent = '₹0.00';
+                tax.textContent = '₹0.00';
+                total.textContent = '₹0.00';
+                return;
+            }
+
+            cartItemsContainer.innerHTML = '';
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            cart.forEach((item, index) => {
+                totalItems += item.quantity;
+                totalPrice += item.price * item.quantity;
+
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="cart-item-details">
+                        <h3>${item.title}</h3>
+                        <p>In Stock</p>
+                        <p>Eligible for FREE Shipping</p>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
+                        <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">
+                        <button onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                    </div>
+                    <div class="cart-item-price">${item.price.toFixed(2)}</div>
+                    <div class="cart-item-remove" onclick="removeItem(${index})">Delete</div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            const shippingCost = totalPrice > 25 ? 0 : 5.99;
+            const taxAmount = totalPrice * 0.08;
+            const finalTotal = totalPrice + shippingCost + taxAmount;
+
+            itemCount.textContent = totalItems;
+            subtotal.textContent = `₹${totalPrice.toFixed(2)}`;
+            shipping.textContent = shippingCost === 0 ? 'FREE' : `₹${shippingCost.toFixed(2)}`;
+            tax.textContent = `₹${taxAmount.toFixed(2)}`;
+            total.textContent = `₹${finalTotal.toFixed(2)}`;
+        }
+
+        function updateQuantity(index, newQuantity) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (newQuantity <= 0) {
+                removeItem(index);
+                return;
+            }
+            cart[index].quantity = parseInt(newQuantity);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Initialize cart on page load
+        loadCart();
+    </script>
+</body>
+</html>
